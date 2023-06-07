@@ -12,7 +12,7 @@
       $accessToken = "$(System.AccessToken)"
       $headers = @{
         'Content-Type' = 'application/json'
-        'Authorization' = "Bearer $accessToken"
+        'Authorization' = "Bearer $accessToken" 
       }
 
       Invoke-RestMethod -Uri $url -Headers $headers -Method Put
