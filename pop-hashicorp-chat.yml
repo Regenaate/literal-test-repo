@@ -1,0 +1,20 @@
+name: Populate Secrets to Vault
+on:
+  push:
+    branches:
+      - master
+jobs:
+  populate-secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up HashiCorp Vault
+        uses: hashicorp/setup-vault@v1
+        with:
+          version: '1.8.2'
+          method: github
+      - name: Populate secrets to Vault
+        run: |
+          vault kv put secret/my-app/api-key key=your-api-key
+          vault kv put secret/my-app/database-url url=your-database-url
